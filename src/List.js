@@ -1,32 +1,28 @@
-import Card from './Card';
-import store from './store';
+import React from 'react';
+import Card from './Card'
 import './List.css';
 
-function List(props) {
-    const storeCards = store.allCards
-    const array = Object.keys(storeCards)
-    const cards = array.map((_,i) => 
-        <Card title={array.i.title} content={array.i.content} />
-    )
-
-
-    return (
-        <section className="List">
-            <header>
-                <h2>{props.header}</h2>
-            </header>
-            <div className='List-cards'>{cards}</div>
-        </section>
-    );
-};
-
-class ListClass extends React.Component {
-    render() {
-        console.log('Using a class component!')
-        return (
-
-        )
-    }
+export default function List(props) {
+  return (
+    <section className='List'>
+      <header className='List-header'>
+        <h2>{props.header}</h2>
+      </header>
+      <div className='List-cards'>
+        {props.cards.map((card) =>
+          <Card
+            key={card.id}
+            title={card.title}
+            content={card.content}
+          />
+        )}
+        <button
+          type='button'
+          className='List-add-button'
+        >
+          + Add Random Card
+        </button>
+      </div>
+    </section>
+  )
 }
-
-export default List;
